@@ -15,6 +15,7 @@ from patron.i18n import _
 from patron import objects
 
 from oslo_serialization import jsonutils
+from patron.verify import rpcapi as access_rpcapi
 
 import os
 
@@ -24,6 +25,7 @@ class PatronAccessController(object):
 
     def __init__(self, ext_mgr):
         self.ext_mgr = ext_mgr
+        self.access_rpcapi = access_rpcapi.VerifyAPI()
 
     def getpolicy(self, req):
         policy.record_enforce(None, "access:get_policy", None)
@@ -167,7 +169,9 @@ class PatronAccessController(object):
         #         'res': False}
 
         try:
-            res = policy.enforce(context, op, target, bypass=False)
+            # res = policy.enforce(context, op, target, bypass=False)
+            res =  self.access_rpcapi.verify(context, op=op, target=target, bypass=False)
+
             if res != False:
                 res = True
             return {'command': 'verify',

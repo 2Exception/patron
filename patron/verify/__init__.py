@@ -14,22 +14,13 @@
 
 import oslo_config.cfg
 
-from patron.conductor import api as conductor_api
+from patron.verify import api as verify_api
 
 
 def API(*args, **kwargs):
     use_local = kwargs.pop('use_local', False)
-    if oslo_config.cfg.CONF.conductor.use_local or use_local:
-        api = conductor_api.LocalAPI
+    if oslo_config.cfg.CONF.verify.use_local or use_local:
+        api = verify_api.LocalAPI
     else:
-        api = conductor_api.API
-    return api(*args, **kwargs)
-
-
-def ComputeTaskAPI(*args, **kwargs):
-    use_local = kwargs.pop('use_local', False)
-    if oslo_config.cfg.CONF.conductor.use_local or use_local:
-        api = conductor_api.LocalComputeTaskAPI
-    else:
-        api = conductor_api.ComputeTaskAPI
+        api = verify_api.API
     return api(*args, **kwargs)
