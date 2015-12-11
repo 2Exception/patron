@@ -701,7 +701,7 @@ class ServiceCommands(object):
     """Enable and disable running services."""
 
     @args('--host', metavar='<host>', help='Host')
-    @args('--service', metavar='<service>', help='Nova service')
+    @args('--service', metavar='<service>', help='Patron service')
     def list(self, host=None, service=None):
         """Show a list of all running services. Filter by host & service
         name
@@ -733,7 +733,7 @@ class ServiceCommands(object):
                                   svc['updated_at']))
 
     @args('--host', metavar='<host>', help='Host')
-    @args('--service', metavar='<service>', help='Nova service')
+    @args('--service', metavar='<service>', help='Patron service')
     def enable(self, host, service):
         """Enable scheduling for a service."""
         ctxt = context.get_admin_context()
@@ -747,7 +747,7 @@ class ServiceCommands(object):
                {'service': service, 'host': host}))
 
     @args('--host', metavar='<host>', help='Host')
-    @args('--service', metavar='<service>', help='Nova service')
+    @args('--service', metavar='<service>', help='Patron service')
     def disable(self, host, service):
         """Disable scheduling for a service."""
         ctxt = context.get_admin_context()
