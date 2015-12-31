@@ -12,9 +12,9 @@ of other services easier and more powerful.
 Patron is comprised of two parts: 
 the ``patron service`` and a request filter called ``Access Endpoint Middleware (AEM)``:
 
- * ``patron service`` stores the access control policies of other OpenStack services and provides access decisions based on those policies.
+* ``patron service`` stores the access control policies of other OpenStack services and provides access decisions based on those policies.
  
- * ``AEM`` is to be installed on all other OpenStack services that needs access control. The requests to those services are first mediated by the patron service, who makes a decision (``YES`` or ``NO``) based on policy and returns the result back to AEM. If patron's answer is ``YES``, AEM permits this request, otherwise the request is going to be denied.
+* ``AEM`` is to be installed on all other OpenStack services that needs access control. The requests to those services are first mediated by the patron service, who makes a decision (``YES`` or ``NO``) based on policy and returns the result back to AEM. If patron's answer is ``YES``, AEM permits this request, otherwise the request is going to be denied.
 
 Patron provides RESTful APIs to users so that they can view and update their
 access control policies to the cloud. Patron improves the original ``policy.json``
